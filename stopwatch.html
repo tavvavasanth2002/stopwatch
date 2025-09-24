@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Stop watch</title>
+    <style>
+        .btn:hover{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center">
+    <div class="container-fluid p-5">
+        <div class="row d-flex justify-content-center d-flex justify-content-center align-items-center">
+            <div class="card shadow-lg col-md-4 co-12">
+                <div class="card-header p-4">
+                    <div class="card-title">
+                        <h2 class="text-center">STOP WATCH</h2>
+                    </div>
+                </div>
+                <div class="card-body p-5">
+                    <h2 id="myid" class="text-center">00:00:00</h2>
+                </div>
+                <div class="card-footer text-center p-4">
+                    <buttton class="btn btn-lg ms-4" onclick="startNow()">Start</buttton>
+                    <buttton class="btn btn-lg ms-4" onclick="pauseNow()">Pause</buttton>
+                    <buttton class="btn btn-lg ms-4" onclick="resetNow()">Reset</buttton>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var s=0,m=0,h=0;
+        var timer;
+        function timeinterval()
+        {
+            s++;
+            if(s==60)
+            {
+                s=0,m++;
+            }
+            if(m==60)
+            {s=0,m=0,h++;}
+            document.getElementById("myid").innerHTML=`${h.toString().padStart(2,"0")}:${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
+        }
+        function startNow(){
+            timer=setInterval(timeinterval,1000)
+        }
+        function pauseNow(){
+            clearInterval(timer)
+        }
+        function resetNow()
+        {
+            clearInterval(timer);
+            s=0,m=0,h=0;
+            document.getElementById("myid").innerHTML=`${h.toString().padStart(2,"0")}:${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;      
+        }
+    </script>
+</body>
+</html>
